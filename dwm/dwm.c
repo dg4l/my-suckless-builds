@@ -197,7 +197,6 @@ static unsigned int getsystraywidth();
 static int gettextprop(Window w, Atom atom, char *text, unsigned int size);
 static void grabbuttons(Client *c, int focused);
 static void grabkeys(void);
-static void incnmaster(const Arg *arg);
 static void keypress(XEvent *e);
 static void killclient(const Arg *arg);
 static void manage(Window w, XWindowAttributes *wa);
@@ -1105,13 +1104,6 @@ grabkeys(void)
 	}
 }
 
-void
-incnmaster(const Arg *arg)
-{
-	selmon->nmaster = MAX(selmon->nmaster + arg->i, 0);
-	arrange(selmon);
-}
-
 #ifdef XINERAMA
 static int
 isuniquegeom(XineramaScreenInfo *unique, size_t n, XineramaScreenInfo *info)
@@ -1308,7 +1300,7 @@ movemouse(const Arg *arg)
 			handler[ev.type](&ev);
 			break;
 		case MotionNotify:
-			if ((ev.xmotion.time - lasttime) <= (1000 / 60))
+			if ((ev.xmotion.time - lasttime) <= (1000 / 170))
 				continue;
 			lasttime = ev.xmotion.time;
 
@@ -1507,7 +1499,7 @@ resizemouse(const Arg *arg)
 			handler[ev.type](&ev);
 			break;
 		case MotionNotify:
-			if ((ev.xmotion.time - lasttime) <= (1000 / 60))
+			if ((ev.xmotion.time - lasttime) <= (1000 / 170))
 				continue;
 			lasttime = ev.xmotion.time;
 
@@ -1566,6 +1558,7 @@ run(void)
 	XEvent ev;
 	/* main event loop */
 	XSync(dpy, False);
+    system("zsh ~/startup.sh");
 	while (running && !XNextEvent(dpy, &ev))
 		if (handler[ev.type])
 			handler[ev.type](&ev); /* call handler */
