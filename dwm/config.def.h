@@ -2,6 +2,15 @@
 
 #include <X11/XF86keysym.h>
 #include "theme.h"
+#define LAPTOP 0
+
+#if LAPTOP
+#define REFRESH_RATE 60
+#else
+#define REFRESH_RATE 170
+#endif
+
+
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
