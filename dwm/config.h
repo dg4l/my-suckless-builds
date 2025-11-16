@@ -74,6 +74,8 @@ static const char *shotcmd[]  = { "flameshot", "gui", NULL};
 static const char *lockcmd[]  = { "xsecurelock", NULL };
 static const char *volupcmd[] = { "pactl", "set-sink-volume", "0", "+5%", NULL };
 static const char *voldowncmd[] = { "pactl", "set-sink-volume", "0", "-5%", NULL };
+static const char *volmutecmd[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
+static const char *micmutecmd[] = { "pactl", "set-source-mute", "@DEFAULT_SOURCE@", "toggle", NULL };
 
 
 static const Key keys[] = {
@@ -84,6 +86,8 @@ static const Key keys[] = {
     { MODKEY|ShiftMask,             XK_Page_Up,      spawn,          {.v = shotcmd} },
     { 0, XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd } },
     { 0, XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd } },
+    { 0, XF86XK_AudioMute, spawn, {.v = volmutecmd } },
+    { 0, XF86XK_AudioMicMute, spawn, {.v = micmutecmd } },
     { MODKEY,                       XK_b,      togglebar,      {0} },
     { MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
     { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
