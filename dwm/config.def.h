@@ -10,6 +10,7 @@
 #define REFRESH_RATE 170
 #endif
 
+#define VOLMAN_PATH "/home/imaginary/.wm-scripts/volman.sh"
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -72,10 +73,14 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *shotcmd[]  = { "flameshot", "gui", NULL};
 static const char *lockcmd[]  = { "xsecurelock", NULL };
-static const char *volupcmd[] = { "pactl", "set-sink-volume", "0", "+5%", NULL };
-static const char *voldowncmd[] = { "pactl", "set-sink-volume", "0", "-5%", NULL };
-static const char *volmutecmd[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
-static const char *micmutecmd[] = { "pactl", "set-source-mute", "@DEFAULT_SOURCE@", "toggle", NULL };
+//static const char *volupcmd[] = { "pactl", "set-sink-volume", "0", "+5%", NULL };
+//static const char *voldowncmd[] = { "pactl", "set-sink-volume", "0", "-5%", NULL };
+//static const char *volmutecmd[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
+//static const char *micmutecmd[] = { "pactl", "set-source-mute", "@DEFAULT_SOURCE@", "toggle", NULL };
+static const char *volupcmd[] = { VOLMAN_PATH, "up", NULL };
+static const char *voldowncmd[] = { VOLMAN_PATH, "down", NULL };
+static const char *volmutecmd[] = { VOLMAN_PATH, "toggleaudio", NULL };
+static const char *micmutecmd[] = { VOLMAN_PATH, "togglemic", NULL };
 
 
 static const Key keys[] = {
