@@ -1,6 +1,10 @@
+[Desktop Entry]
 Version=1.0
-Name=DWM
-Comment=Dynamic Window Manager
+Type=Application
+Name=dwm
+Comment=dwm
 Exec=dwm
-Icon=
-
+Icon=dwm
+Terminal=false
+StartupNotify=false
+Categories=Application;
