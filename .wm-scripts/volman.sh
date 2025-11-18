@@ -6,6 +6,11 @@
 
 header="Volume Changed"
  
+# works for now but might be fragile
+get_volume() {
+    echo "$(pactl get-sink-volume @DEFAULT_SINK@ | head -1 | awk -F'[:/]' '{print $4}' | sed 's/^[ \t]*//;s/[ \t]*$//')"
+}
+
 vol_notify() {
     notify-send -t 1500 "$1" "$2"
 }
@@ -39,4 +44,6 @@ elif [ "$1" = "toggleaudio" ]; then
     toggle_audio 
 elif [ "$1" = "togglemic" ]; then
     toggle_mic 
+elif [ "$1" = "getvol" ]; then
+    get_volume
 fi
