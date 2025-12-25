@@ -238,6 +238,7 @@ static void togglebar(const Arg *arg);
 static void togglefullscr(const Arg *arg);
 static void togglefloating(const Arg *arg);
 static void toggletag(const Arg *arg);
+static void clearurgent(const Arg *arg);
 static void toggleview(const Arg *arg);
 static void unfocus(Client *c, int setfocus);
 static void unmanage(Client *c, int destroyed);
@@ -1971,6 +1972,19 @@ toggleview(const Arg *arg)
         selmon->tagset[selmon->seltags] = newtagset;
         focus(NULL);
         arrange(selmon);
+    }
+}
+
+void
+clearurgent(const Arg *arg)
+{
+    Monitor* tm = NULL;
+    Client* tc = NULL;
+    for (tm = mons; tm; tm = tm->next) {
+            for (tc = tm->clients; tc; tc = tc->next) {
+                if (tc->isurgent) seturgent(tc, 0);
+            }
+            drawbar(tm);
     }
 }
 
