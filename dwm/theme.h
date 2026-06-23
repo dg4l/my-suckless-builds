@@ -1,6 +1,6 @@
-static const char col_gray1[]       = "#1a1b26";
-static const char col_gray2[]       = "#ff9e64";
-static const char col_gray3[]       = "#f7768e";
-static const char col_gray4[]       = "#7aa2f7";
-static const char col_cyan[]        = "#24283b";
-static const char col_border[]      = "#bb9af7";
+static const char col_gray1[]       = "#191724";
+static const char col_gray2[]       = "#1f1d2e";
+static const char col_gray3[]       = "#908caa";
+static const char col_gray4[]       = "#e0def4";
+static const char col_cyan[]        = "#31748f";
+static const char col_border[]      = "#26233a";

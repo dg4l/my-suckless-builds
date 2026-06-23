@@ -10,6 +10,7 @@
 #define REFRESH_RATE 170
 #endif
 
+#define VOLMAN_PATH "/home/imaginary/.wm-scripts/volman.sh"
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -23,10 +24,10 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[] = {"SauceCodePro:size=10"};
 static const char dmenufont[] = "SauceCodePro:size=10";
-static const char *colors[][3] = {
-    /*               fg         bg         border   */
-    [SchemeNorm] = {col_gray3, col_gray1, col_cyan},
-    [SchemeSel] = {col_gray4, col_cyan, col_border},
+static const char *colors[][3]      = {
+	/*               fg         bg         border   */
+	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+	[SchemeSel]  = { col_gray4, col_border,  col_cyan  },
 };
 
 /* tagging */
@@ -68,14 +69,18 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_border, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *shotcmd[]  = { "flameshot", "gui", NULL};
 static const char *lockcmd[]  = { "xsecurelock", NULL };
-static const char *volupcmd[] = { "pactl", "set-sink-volume", "0", "+5%", NULL };
-static const char *voldowncmd[] = { "pactl", "set-sink-volume", "0", "-5%", NULL };
-static const char *volmutecmd[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
-static const char *micmutecmd[] = { "pactl", "set-source-mute", "@DEFAULT_SOURCE@", "toggle", NULL };
+//static const char *volupcmd[] = { "pactl", "set-sink-volume", "0", "+5%", NULL };
+//static const char *voldowncmd[] = { "pactl", "set-sink-volume", "0", "-5%", NULL };
+//static const char *volmutecmd[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
+//static const char *micmutecmd[] = { "pactl", "set-source-mute", "@DEFAULT_SOURCE@", "toggle", NULL };
+static const char *volupcmd[] = { VOLMAN_PATH, "up", NULL };
+static const char *voldowncmd[] = { VOLMAN_PATH, "down", NULL };
+static const char *volmutecmd[] = { VOLMAN_PATH, "toggleaudio", NULL };
+static const char *micmutecmd[] = { VOLMAN_PATH, "togglemic", NULL };
 
 
 static const Key keys[] = {
@@ -94,6 +99,7 @@ static const Key keys[] = {
     { MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
     { MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
     { MODKEY,                       XK_Return, zoom,           {0} },
+    { MODKEY|ShiftMask,             XK_x,      clearurgent,    {0} },
     { MODKEY,                       XK_Tab,    view,           {0} },
     { MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
     { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
