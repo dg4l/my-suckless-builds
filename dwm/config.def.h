@@ -72,7 +72,6 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_border, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "kitty", NULL };
-static const char *shotcmd[]  = { "flameshot", "gui", NULL};
 static const char *lockcmd[]  = { "xsecurelock", NULL };
 //static const char *volupcmd[] = { "pactl", "set-sink-volume", "0", "+5%", NULL };
 //static const char *voldowncmd[] = { "pactl", "set-sink-volume", "0", "-5%", NULL };
