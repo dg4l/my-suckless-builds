@@ -11,6 +11,7 @@
 #endif
 
 #define VOLMAN_PATH "/home/imaginary/.wm-scripts/volman.sh"
+#define SCREENSHOT_PATH "/home/imaginary/.wm-scripts/screenshot.sh"
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -81,6 +82,7 @@ static const char *volupcmd[] = { VOLMAN_PATH, "up", NULL };
 static const char *voldowncmd[] = { VOLMAN_PATH, "down", NULL };
 static const char *volmutecmd[] = { VOLMAN_PATH, "toggleaudio", NULL };
 static const char *micmutecmd[] = { VOLMAN_PATH, "togglemic", NULL };
+static const char *capselcmd[] = { SCREENSHOT_PATH, "-sel", NULL };
 
 
 static const Key keys[] = {
@@ -88,7 +90,7 @@ static const Key keys[] = {
     { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
     { MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
     { MODKEY|ShiftMask,             XK_y,      spawn,          {.v = lockcmd } },
-    { MODKEY|ShiftMask,             XK_Page_Up,      spawn,          {.v = shotcmd} },
+    { MODKEY|ShiftMask,             XK_Page_Up,      spawn,          {.v = capselcmd} },
     { 0, XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd } },
     { 0, XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd } },
     { 0, XF86XK_AudioMute, spawn, {.v = volmutecmd } },
